@@ -1,4 +1,4 @@
-# Motion Mouse
+# Motion Mouse: Interaction Driver
 
 import serial
 import pyautogui
@@ -18,9 +18,14 @@ vx = 1
 vy = 1
 
 is_mouse_down = False
-c = False # if we're clicking
-scroll_direction = 0 # 1 = scroll up, 2 = scroll down, 0 = no scroll
-scroll_count = 0 # counter to only scroll once then cool down
+
+# if we're clicking
+c = False
+# 1 = scroll up, 2 = scroll down, 0 = no scroll
+scroll_direction = 0
+
+# counter to only scroll once then cool down
+scroll_count = 0
 
 def fit(x):
     if x > 50:
@@ -28,11 +33,11 @@ def fit(x):
     if x < -50:
         return -50
     return x
-    
 
-def update_mouse():
+def move_mouse():
     pyautogui.move(vx, vy)
-    #print(vx, vy, c)
+
+def click_mouse():
     global is_mouse_down
 
     if c:
@@ -46,15 +51,21 @@ def update_mouse():
 
 def scroll_mouse():
     global scroll_count
-    if scroll_count == 0: # if we haven't scrolled recently, scroll
+
+    # if we haven't scrolled recently, scroll
+    if scroll_count == 0:
         if scroll_direction == 1:
             pyautogui.scroll(3)
         elif scroll_direction == 2:
             pyautogui.scroll(-3)
-        scroll_count += 1  # increment the scroll count after performing the action
+        # increment the scroll count after performing the action
+        scroll_count += 1
     else:
-        scroll_count += 1 # increment the scroll count for subsequent data samples
-        if scroll_count >= 3:  # Reset scroll count when it reaches the 3 times so we can scroll again after a delay
+        # increment the scroll count for subsequent data samples
+        scroll_count += 1
+
+        # Reset scroll count when it reaches the 3 times so we can scroll again after a delay
+        if scroll_count >= 3:
             scroll_count = 0
 
 while True:
@@ -67,9 +78,9 @@ while True:
         vy = fit(float(velocities[1]))
         c = velocities[2] == '1'
         scroll_direction = int(velocities[3])
-        if scroll_direction > 0:
-            print(scroll_direction)
-        update_mouse()
+
+        move_mouse()
+        click_mouse()
         scroll_mouse()
     except KeyboardInterrupt:
         break

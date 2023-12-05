@@ -125,12 +125,6 @@ static void run_select(void* _unused) {
   }
 }
 
-/**
- * Initialize the mouse
- * 
- * Timers and drivers should be initialized beforehand
- */
-
 void mouse_init(void) {
   lsm303agr_init();
   amg88_init();
@@ -138,6 +132,6 @@ void mouse_init(void) {
 
   app_timer_create(&motion_timer, APP_TIMER_MODE_REPEATED, run_motion);
   app_timer_create(&select_timer, APP_TIMER_MODE_REPEATED, run_select);
-  app_timer_start(motion_timer, 400, NULL);
+  app_timer_start(motion_timer, APP_TIMER_TICKS(20), NULL);
   app_timer_start(select_timer, APP_TIMER_TICKS(100), NULL);
 }

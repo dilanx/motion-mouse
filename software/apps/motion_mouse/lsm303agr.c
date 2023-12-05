@@ -51,8 +51,6 @@ void lsm303agr_init() {
   uint8_t who_am_i_mag = i2c_int_reg_read(LSM303AGR_MAG_ADDRESS, WHO_AM_I_M);
   // printf("0x%x\n", who_am_i_mag);
 
-  // ---Initialize Temperature---
-
   // Enable temperature sensor
   i2c_int_reg_write(LSM303AGR_ACC_ADDRESS, TEMP_CFG_REG_A, 0xC0);
 }
