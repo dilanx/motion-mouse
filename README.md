@@ -24,9 +24,7 @@ Motion Mouse was built for Northwestern University's **COMP_ENG 346: Microproces
 - [**Qwiic Cables**](https://www.sparkfun.com/categories/tags/qwiic-cables) (various lengths, minimum 2)
 - [**Sport Bands compatible with Apple Watch**](https://www.amazon.com/gp/product/B09KNCDSWN/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) (or similar)
 
-## Usage
-
-### Setup
+## Setup
 
 1. Connect the micro:bit breakout to the micro:bit.
 2. Connect the infrared array breakout to the micro:bit breakout via a Qwiic cable.
@@ -34,11 +32,10 @@ Motion Mouse was built for Northwestern University's **COMP_ENG 346: Microproces
 4. Connect the micro:bit to the computer via USB.
 5. Load the [onboard software](software/apps/motion_mouse/) onto the micro:bit.
 
-### Usage
+## Usage
 
 1. Connect the micro:bit to the computer via USB.
 2. Run the [interaction driver](mouse_driver/) on the computer.
-
 
 ## Authors
 
